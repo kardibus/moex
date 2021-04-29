@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>BOARDID</th>
+        <th>TRADEDATE</th>
+        <th>SHORTNAME</th>
+        <th>SECID</th>
+        <th>NUMTRADES</th>
+        <th>VALUE</th>
+        <th>OPEN</th>
+        <th>LOW</th>
+        <th>HIGH</th>
+        <th>LEGALCLOSEPRICE</th>
+        <th>WAPRICE</th>
+        <th>CLOSE</th>
+        <th>VOLUME</th>
+        <th>MARKETPRICE2</th>
+        <th>MARKETPRICE3</th>
+        <th>ADMITTEDQUOTE</th>
+        <th>MP2VALTRD</th>
+        <th>MARKETPRICE3TRADESVALUE</th>
+        <th>ADMITTEDVALUE</th>
+        <th>WAVAL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>secid</th>
+        <th>shortname</th>
+        <th>regnumber</th>
+        <th>name</th>
+        <th>isin</th>
+        <th>is_traded</th>
+        <th>emitent_id</th>
+        <th>emitent_title</th>
+        <th>emitent_inn</th>
+        <th>emitent_okpo</th>
+        <th>gosreg</th>
+        <th>type</th>
+        <th>group_</th>
+        <th>primary_boardid</th>
+        <th>marketprice_boardid</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
