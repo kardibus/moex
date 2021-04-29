@@ -1,28 +1,28 @@
 package com.kardibus.moex.domain.objectXML.history;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Data
 @NoArgsConstructor
-@XStreamAlias("column")
+@XmlRootElement(name = "column")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ColumnXML {
 
-    @XStreamAlias("name")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "name")
     private String name;
 
-    @XStreamAlias("type")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "type")
     private String type;
 
-    @XStreamAlias("bytes")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "bytes")
     private String bytes;
 
-    @XStreamAlias("max_size")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "max_size")
     private String max_size;
 }

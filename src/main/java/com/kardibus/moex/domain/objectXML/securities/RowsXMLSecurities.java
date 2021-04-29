@@ -1,17 +1,21 @@
 package com.kardibus.moex.domain.objectXML.securities;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-@XStreamAlias("rows")
+@XmlRootElement(name = "rows")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RowsXMLSecurities {
 
-    @XStreamImplicit(itemFieldName = "row")
+    @XmlElement(name = "row")
     private List<RowXMLSecurities> rowXMLSecurities;
 }

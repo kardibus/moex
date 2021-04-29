@@ -1,94 +1,76 @@
 package com.kardibus.moex.domain.objectXML.history;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Data
 @NoArgsConstructor
-@XStreamAlias("row")
+@XmlRootElement(name = "row")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RowXML {
 
-    @XStreamAlias("BOARDID")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "BOARDID")
     private String BOARDID;
 
-    @XStreamAlias("TRADEDATE")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "TRADEDATE")
     private String TRADEDATE;
 
-    @XStreamAlias("SHORTNAME")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "SHORTNAME")
     private String SHORTNAME;
 
-    @XStreamAlias("SECID")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "SECID")
     private String SECID;
 
-    @XStreamAlias("NUMTRADES")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "NUMTRADES")
     private String NUMTRADES;
 
-    @XStreamAlias("VALUE")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "VALUE")
     private String VALUE;
 
-    @XStreamAlias("OPEN")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "OPEN")
     private String OPEN;
 
-    @XStreamAlias("LOW")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "LOW")
     private String LOW;
 
-    @XStreamAlias("HIGH")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "HIGH")
     private String HIGH;
 
-    @XStreamAlias("LEGALCLOSEPRICE")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "LEGALCLOSEPRICE")
     private String LEGALCLOSEPRICE;
 
-    @XStreamAlias("WAPRICE")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "WAPRICE")
     private String WAPRICE;
 
-    @XStreamAlias("CLOSE")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "CLOSE")
     private String CLOSE;
 
-    @XStreamAlias("VOLUME")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "VOLUME")
     private String VOLUME;
 
-    @XStreamAlias("MARKETPRICE2")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "MARKETPRICE2")
     private String MARKETPRICE2;
 
-    @XStreamAlias("MARKETPRICE3")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "MARKETPRICE3")
     private String MARKETPRICE3;
 
-    @XStreamAlias("ADMITTEDQUOTE")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "ADMITTEDQUOTE")
     private String ADMITTEDQUOTE;
 
-    @XStreamAlias("MP2VALTRD")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "MP2VALTRD")
     private String MP2VALTRD;
 
-    @XStreamAlias("MARKETPRICE3TRADESVALUE")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "MARKETPRICE3TRADESVALUE")
     private String MARKETPRICE3TRADESVALUE;
 
-    @XStreamAlias("ADMITTEDVALUE")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "ADMITTEDVALUE")
     private String ADMITTEDVALUE;
 
-    @XStreamAlias("WAVAL")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "WAVAL")
     private String WAVAL;
 }

@@ -1,17 +1,19 @@
 package com.kardibus.moex.domain.objectXML.securities;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-@XStreamAlias("rows")
+@XmlRootElement(name = "rows")
 public class RowsCursorSecurities {
 
-    @XStreamImplicit(itemFieldName = "row")
+    @XmlElementWrapper(name = "rowCursorSecurities")
+    @XmlElement(name = "row")
     private List<RowCursorSecurities> rowCursorSecurities;
 }

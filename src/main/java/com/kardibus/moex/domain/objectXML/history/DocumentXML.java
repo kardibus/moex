@@ -1,17 +1,20 @@
 package com.kardibus.moex.domain.objectXML.history;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-@XStreamAlias("document")
+@XmlRootElement(name = "document")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DocumentXML {
 
-    @XStreamImplicit(itemFieldName = "data")
+    @XmlElement(name = "data")
     private List<DataXML> dataXML;
 }

@@ -1,24 +1,25 @@
 package com.kardibus.moex.domain.objectXML.history;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Data
 @NoArgsConstructor
-@XStreamAlias("row")
+@XmlRootElement(name = "row")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RowCursor {
 
-    @XStreamAlias("INDEX")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "INDEX")
     private String INDEX;
 
-    @XStreamAlias("TOTAL")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "TOTAL")
     private String TOTAL;
 
-    @XStreamAlias("PAGESIZE")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "PAGESIZE")
     private String PAGESIZE;
 }

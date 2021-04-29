@@ -6,13 +6,16 @@ import com.kardibus.moex.domain.objectXML.history.DocumentXML;
 import com.kardibus.moex.domain.objectXML.history.RowXML;
 import com.kardibus.moex.repository.HistoryRepo;
 import com.kardibus.moex.repository.SecuritiesRepo;
-import com.thoughtworks.xstream.XStream;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +29,7 @@ public class ParserHistoryXML extends Thread {
     private SecuritiesRepo securitiesRepo;
 
     @Autowired
-    public ParserHistoryXML(HistoryRepo historyRepo,SecuritiesRepo securitiesRepo) {
+    public ParserHistoryXML(HistoryRepo historyRepo, SecuritiesRepo securitiesRepo) {
         this.historyRepo = historyRepo;
         this.securitiesRepo = securitiesRepo;
 
@@ -38,14 +41,10 @@ public class ParserHistoryXML extends Thread {
         parser();
     }
 
-    private void parser() {
-       XStream xStream = new XStream();
-
-        File file = new File(uploadPath);
-
-        xStream.processAnnotations(DocumentXML.class);
-
-        DocumentXML res = (DocumentXML) xStream.fromXML(file);
+    private void parser() throws JAXBException, FileNotFoundException {
+        JAXBContext context = JAXBContext.newInstance(DocumentXML.class);
+        Unmarshaller um = context.createUnmarshaller();
+        DocumentXML res = (DocumentXML) um.unmarshal(new FileReader(uploadPath));
 
         List<HistoryEntity> historyEntityList = new ArrayList<>();
 

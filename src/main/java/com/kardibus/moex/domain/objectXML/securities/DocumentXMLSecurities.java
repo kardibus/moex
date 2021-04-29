@@ -1,17 +1,17 @@
 package com.kardibus.moex.domain.objectXML.securities;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-@XStreamAlias("document")
+@XmlRootElement(name = "document")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DocumentXMLSecurities {
 
-    @XStreamImplicit(itemFieldName = "data")
+    @XmlElement(name = "data")
     private List<DataXMLSecurities> dataXMLSecurities;
 }

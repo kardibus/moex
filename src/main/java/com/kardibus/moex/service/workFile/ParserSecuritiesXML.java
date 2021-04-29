@@ -4,12 +4,16 @@ import com.kardibus.moex.domain.entity.SecuritiesEntity;
 import com.kardibus.moex.domain.objectXML.securities.DocumentXMLSecurities;
 import com.kardibus.moex.domain.objectXML.securities.RowXMLSecurities;
 import com.kardibus.moex.repository.SecuritiesRepo;
-import com.thoughtworks.xstream.XStream;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,21 +30,17 @@ public class ParserSecuritiesXML extends Thread {
         this.securitiesRepo = securitiesRepo;
     }
 
+    @SneakyThrows
     @Override
     public void run() {
         xStream();
     }
 
 
-    private void xStream() {
-        XStream xStream = new XStream();
-
-        xStream.setMode(XStream.NO_REFERENCES);
-        File f = new File(uploadPath);
-
-        xStream.processAnnotations(DocumentXMLSecurities.class);
-
-        DocumentXMLSecurities res = (DocumentXMLSecurities) xStream.fromXML(f);
+    private void xStream() throws JAXBException, FileNotFoundException {
+        JAXBContext context = JAXBContext.newInstance(DocumentXMLSecurities.class);
+        Unmarshaller um = context.createUnmarshaller();
+        DocumentXMLSecurities res = (DocumentXMLSecurities) um.unmarshal(new FileReader(uploadPath));
 
         List<SecuritiesEntity> securitiesEntityList = new ArrayList<>();
 

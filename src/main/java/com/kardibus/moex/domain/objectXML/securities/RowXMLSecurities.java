@@ -1,76 +1,52 @@
 package com.kardibus.moex.domain.objectXML.securities;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Data
 @NoArgsConstructor
-@XStreamAlias("row")
+@XmlRootElement(name = "row")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RowXMLSecurities {
 
-    @XStreamAlias("id")
-    @XStreamAsAttribute
+    @XmlAttribute
     private String id;
-
-    @XStreamAlias("secid")
-    @XStreamAsAttribute
+    @XmlAttribute
     private String secid;
-
-    @XStreamAlias("shortname")
-    @XStreamAsAttribute
+    @XmlAttribute
     private String shortname;
-
-    @XStreamAlias("regnumber")
-    @XStreamAsAttribute
+    @XmlAttribute
     private String regnumber;
-
-    @XStreamAlias("name")
-    @XStreamAsAttribute
+    @XmlAttribute
     private String name;
-
-    @XStreamAlias("isin")
-    @XStreamAsAttribute
+    @XmlAttribute
     private String isin;
-
-    @XStreamAlias(value = "emitent_id")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "emitent_id")
     private String emitent_id;
-
-    @XStreamAlias(value = "emitent_title")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "emitent_title")
     private String emitent_title;
-
-    @XStreamAlias(value = "emitent_inn")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "emitent_inn")
     private String emitent_inn;
-
-    @XStreamAlias(value = "emitent_okpo")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "emitent_okpo")
     private String emitent_okpo;
-
-    @XStreamAlias("gosreg")
-    @XStreamAsAttribute
+    @XmlAttribute
     private String gosreg;
-
-    @XStreamAlias("type")
-    @XStreamAsAttribute
+    @XmlAttribute
     private String type;
-
-    @XStreamAlias("group")
-    @XStreamAsAttribute
+    @XmlAttribute
     private String group;
-
-    @XStreamAlias(value = "primary_boardid")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "primary_boardid")
     private String primary_boardid;
-
-    @XStreamAlias(value = "marketprice_boardid")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "marketprice_boardid")
     private String marketprice_boardid;
-
-    @XStreamAlias(value = "is_traded")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "is_traded")
     private String is_traded;
+
+
 }

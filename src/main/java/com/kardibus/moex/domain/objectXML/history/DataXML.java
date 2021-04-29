@@ -1,23 +1,22 @@
 package com.kardibus.moex.domain.objectXML.history;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.*;
+
 @Data
 @NoArgsConstructor
-@XStreamAlias("data")
+@XmlRootElement(name = "data")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataXML {
 
-    @XStreamAlias("id")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "id")
     private String id;
 
-    @XStreamAlias("metadata")
-    @XStreamAsAttribute
+    @XmlElement(name = "metadata")
     private MetaDataXML metaDataXML;
 
-    @XStreamAlias("rows")
+    @XmlElement(name = "rows")
     private RowsXML rowsXML;
 }

@@ -1,17 +1,22 @@
 package com.kardibus.moex.domain.objectXML.history;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Data
 @NoArgsConstructor
-@XStreamAlias("data1")
+@XmlRootElement(name = "data1")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataCursor {
 
-    @XStreamAlias("metadata")
+    @XmlElement(name = "metadata")
     private MetadataCursor metadataCursore;
 
-    @XStreamAlias("rows")
+    @XmlElement(name = "rows")
     private RowsCursor rowsCursor;
 }

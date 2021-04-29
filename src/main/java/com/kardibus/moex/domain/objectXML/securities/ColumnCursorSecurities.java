@@ -1,20 +1,22 @@
 package com.kardibus.moex.domain.objectXML.securities;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Data
 @NoArgsConstructor
-@XStreamAlias("column")
+@XmlRootElement(name = "column")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ColumnCursorSecurities {
 
-    @XStreamAlias("name")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "name")
     private String name;
 
-    @XStreamAlias("type")
-    @XStreamAsAttribute
+    @XmlAttribute(name = "type")
     private String type;
 }
