@@ -3,13 +3,13 @@ package com.kardibus.moex.dao;
 import com.kardibus.moex.domain.entity.HistoryEntity;
 import com.kardibus.moex.repository.HistoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Service
+@Component
 public class HistoryDAO {
 
     private HistoryRepo historyRepo;
@@ -42,7 +42,7 @@ public class HistoryDAO {
         history.setBOARDID(historyEntity.get("boardid"));
         history.setOPEN(historyEntity.get("open"));
         history.setVOLUME(historyEntity.get("volume"));
-      //  history.setSECID(historyEntity.get("secid"));
+        //  history.setSECID(historyEntity.get("secid"));
         history.setNUMTRADES(historyEntity.get("numtrades"));
         history.setSHORTNAME(historyEntity.get("shortname"));
         history.setWAPRICE(historyEntity.get("waprice"));
@@ -57,7 +57,7 @@ public class HistoryDAO {
         return getAllHistory();
     }
 
-    public List<HistoryEntity> updateHistory(HistoryEntity id,Map<String,String> historyEntity) {
+    public List<HistoryEntity> updateHistory(HistoryEntity id, Map<String, String> historyEntity) {
         id.setTRADEDATE(historyEntity.get("tradedate"));
         id.setLOW(historyEntity.get("low"));
         id.setLEGALCLOSEPRICE(historyEntity.get("legalcloseprice"));
@@ -67,7 +67,7 @@ public class HistoryDAO {
         id.setBOARDID(historyEntity.get("boardid"));
         id.setOPEN(historyEntity.get("open"));
         id.setVOLUME(historyEntity.get("volume"));
-     //   id.setSECID(historyEntity.get("secid"));
+        //   id.setSECID(historyEntity.get("secid"));
         id.setNUMTRADES(historyEntity.get("numtrades"));
         id.setSHORTNAME(historyEntity.get("shortname"));
         id.setWAPRICE(historyEntity.get("waprice"));

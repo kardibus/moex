@@ -2,13 +2,13 @@ package com.kardibus.moex.dao;
 
 import com.kardibus.moex.domain.entity.SecuritiesEntity;
 import com.kardibus.moex.repository.SecuritiesRepo;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Service
+@Component
 public class SecuritiesDAO {
 
     private SecuritiesRepo securitiesRepo;

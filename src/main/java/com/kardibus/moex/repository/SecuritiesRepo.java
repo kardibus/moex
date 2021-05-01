@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SecuritiesRepo extends JpaRepository<SecuritiesEntity, Long> {
     SecuritiesEntity findBySecid(String secid);
+
 }

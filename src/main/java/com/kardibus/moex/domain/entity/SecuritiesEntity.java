@@ -45,6 +45,6 @@ public class SecuritiesEntity {
 
     private String marketprice_boardid;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "secid")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "secid",fetch = FetchType.EAGER)
     private Set<HistoryEntity> SECID;
 }
