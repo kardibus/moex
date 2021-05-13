@@ -25,14 +25,15 @@ public class SecuritiesDAO {
         return securitiesRepo.findAll();
     }
 
-    public void deleteSecurities(Long id) {
-        securitiesRepo.deleteById(id);
+    public void deleteSecurities(String id) {
+        securitiesRepo.delete(securitiesRepo.findBySecid(id));
     }
 
     public List<SecuritiesEntity> createSecurities(Map<String, String> securitiesEntity) {
 
         SecuritiesEntity securities = new SecuritiesEntity();
 
+        securities.setId(Long.valueOf(securitiesEntity.get("id")));
         securities.setSecid(securitiesEntity.get("secid"));
         securities.setShortname(securitiesEntity.get("shortname"));
         securities.setRegnumber(securitiesEntity.get("regnumber"));

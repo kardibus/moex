@@ -16,6 +16,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,8 @@ public class ParserHistoryXML extends Thread {
 
     private HistoryRepo historyRepo;
     private SecuritiesRepo securitiesRepo;
+
+    public ParserHistoryXML(){}
 
     @Autowired
     public ParserHistoryXML(HistoryRepo historyRepo, SecuritiesRepo securitiesRepo) {
@@ -41,9 +45,10 @@ public class ParserHistoryXML extends Thread {
         parser();
     }
 
-    private void parser() throws JAXBException, FileNotFoundException {
+    private void parser() throws JAXBException, FileNotFoundException, ParseException {
         JAXBContext context = JAXBContext.newInstance(DocumentXML.class);
         Unmarshaller um = context.createUnmarshaller();
+
         DocumentXML res = (DocumentXML) um.unmarshal(new FileReader(uploadPath));
 
         List<HistoryEntity> historyEntityList = new ArrayList<>();
@@ -55,9 +60,10 @@ public class ParserHistoryXML extends Thread {
 
                 if (securitiesRepo.findBySecid(list.getSECID()) != null) {
                     HistoryEntity historyEntity = new HistoryEntity();
+                    SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd");
 
                     historyEntity.setBOARDID(list.getBOARDID());
-                    historyEntity.setTRADEDATE(list.getTRADEDATE());
+                    historyEntity.setTRADEDATE(formatForDateNow.parse(list.getTRADEDATE()));
                     historyEntity.setSHORTNAME(list.getSHORTNAME());
 
                     historyEntity.setSecid(securitiesRepo.findBySecid(list.getSECID()));

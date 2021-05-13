@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form enctype="multipart/form-data" method="post" action="/">
+<form enctype="multipart/form-data" method="post" action="/file">
     <p>Загрузите ваши файлы на сервер</p>
     <p><input type="file" name="file" accept="text/xml">
         <input type="submit" value="Отправить"></p>

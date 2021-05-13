@@ -5,6 +5,8 @@ import com.kardibus.moex.repository.HistoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class HistoryDAO {
 
     private HistoryRepo historyRepo;
+    SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     public HistoryDAO(HistoryRepo historyRepo) {
@@ -31,9 +34,10 @@ public class HistoryDAO {
         historyRepo.deleteById(id);
     }
 
-    public List<HistoryEntity> createHistory(Map<String, String> historyEntity) {
+    public List<HistoryEntity> createHistory(Map<String, String> historyEntity) throws ParseException {
         HistoryEntity history = new HistoryEntity();
-        history.setTRADEDATE(historyEntity.get("tradedate"));
+
+        history.setTRADEDATE(formatForDateNow.parse(historyEntity.get("tradedate")));
         history.setLOW(historyEntity.get("low"));
         history.setLEGALCLOSEPRICE(historyEntity.get("legalcloseprice"));
         history.setHIGH(historyEntity.get("high"));
@@ -57,8 +61,8 @@ public class HistoryDAO {
         return getAllHistory();
     }
 
-    public List<HistoryEntity> updateHistory(HistoryEntity id, Map<String, String> historyEntity) {
-        id.setTRADEDATE(historyEntity.get("tradedate"));
+    public List<HistoryEntity> updateHistory(HistoryEntity id, Map<String, String> historyEntity) throws ParseException {
+        id.setTRADEDATE(formatForDateNow.parse(historyEntity.get("tradedate")));
         id.setLOW(historyEntity.get("low"));
         id.setLEGALCLOSEPRICE(historyEntity.get("legalcloseprice"));
         id.setHIGH(historyEntity.get("high"));

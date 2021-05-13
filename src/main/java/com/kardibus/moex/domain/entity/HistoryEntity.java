@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +19,7 @@ public class HistoryEntity {
 
     private String BOARDID;
 
-    private String TRADEDATE;
+    private Date TRADEDATE;
 
     private String SHORTNAME;
 
@@ -55,6 +56,6 @@ public class HistoryEntity {
     private String WAVAL;
 
     @ManyToOne
-    @JoinColumn(name="SECID")
+    @JoinColumn(name = "SECID",referencedColumnName = "secid")
     private SecuritiesEntity secid;
 }

@@ -25,6 +25,8 @@ public class ParserSecuritiesXML extends Thread {
 
     private SecuritiesRepo securitiesRepo;
 
+    public ParserSecuritiesXML(){}
+
     @Autowired
     public ParserSecuritiesXML(SecuritiesRepo securitiesRepo) {
         this.securitiesRepo = securitiesRepo;

@@ -31,7 +31,7 @@ public class SecurietiesCRUD {
     }
 
     @DeleteMapping("securities/{id}")
-    public void deleteSecurities(@PathVariable("id") Long id) {
+    public void deleteSecurities(@PathVariable("id") String id) {
         securitiesDAO.deleteSecurities(id);
     }
 

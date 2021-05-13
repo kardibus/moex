@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @Data
 @NoArgsConstructor
@@ -25,6 +26,8 @@ public class RowXML {
 
     @XmlAttribute(name = "SECID")
     private String SECID;
+
+
 
     @XmlAttribute(name = "NUMTRADES")
     private String NUMTRADES;

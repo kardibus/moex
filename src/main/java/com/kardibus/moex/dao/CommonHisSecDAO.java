@@ -1,7 +1,6 @@
 package com.kardibus.moex.dao;
 
-import com.kardibus.moex.domain.entity.CommonEntity;
-import com.kardibus.moex.domain.entity.SecuritiesEntity;
+import com.kardibus.moex.domain.data.CommonData;
 import com.kardibus.moex.repository.CommonHisSecRepo;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,7 @@ public class CommonHisSecDAO {
         this.commonHisSecRepo = commonHisSecRepo;
     }
 
-    public List<CommonEntity> getAllCommon() {
+    public List<CommonData> getAllCommon() {
         return commonHisSecRepo.getAllCommonHisSec();
     }
 }

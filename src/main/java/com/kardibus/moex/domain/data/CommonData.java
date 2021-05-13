@@ -1,19 +1,21 @@
-package com.kardibus.moex.domain.entity;
+package com.kardibus.moex.domain.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommonEntity {
+public class CommonData {
 
     private String secid;
     private String regnumber;
     private String name;
     private String emitent_title;
-    private String tradedate;
+    private Date tradedate;
     private String open;
     private String close;
     private String numtrades;

@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<table>
+<table  border="1" width="100%" cellpadding="5">
     <thead>
     <tr>
         <th>secid</th>

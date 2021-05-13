@@ -1,7 +1,9 @@
 package com.kardibus.moex.service.workFile;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.*;
 
 @Service
@@ -12,12 +14,14 @@ public class FileReader {
     private ParserHistoryXML parserHistoryXML;
     private ParserSecuritiesXML parserSecuritiesXML;
 
+    @Autowired
     public FileReader(ParserSecuritiesXML parserSecuritiesXML,ParserHistoryXML parserHistoryXML){
         this.parserHistoryXML = parserHistoryXML;
         this.parserSecuritiesXML = parserSecuritiesXML;
     }
 
     public void start() {
+
 
         Future<Long> submit = (Future<Long>) executorService.submit(parserHistoryXML);
 
@@ -37,12 +41,15 @@ public class FileReader {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+
+
         try {
-            executorService.awaitTermination(1000, TimeUnit.HOURS);
+            executorService.awaitTermination(1, TimeUnit.HOURS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        executorService.shutdown();
-    }
 
+        executorService.shutdownNow();
+    }
 }

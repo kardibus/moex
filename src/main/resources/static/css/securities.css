@@ -1,0 +1,12 @@
+.bblock {
+    float: left; /*Задаем обтекание*/
+    text-align: center; /*Центрируем текст по горизонтали*/
+
+}
+
+.wrap {
+    width: 1310px; /*фиксируем ширину обертки*/
+    margin: 0 auto; /*центрируем ее*/
+    background: darkgray;
+    height: 120px; /*Задаем высоту обертки*/
+}

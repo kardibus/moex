@@ -1,4 +1,4 @@
-package com.kardibus.moex.controller.api;
+package com.kardibus.moex.controller;
 
 import com.kardibus.moex.dao.CommonHisSecDAO;
 import org.springframework.beans.factory.annotation.Autowired;

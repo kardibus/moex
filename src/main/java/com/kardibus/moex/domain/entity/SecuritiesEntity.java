@@ -2,20 +2,22 @@ package com.kardibus.moex.domain.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @Entity
-public class SecuritiesEntity {
-
+public class SecuritiesEntity implements Serializable {
 
     @Id
-    private String secid;
-
     private Long id;
+
+    @NaturalId
+    private String secid;
 
     private String shortname;
 
