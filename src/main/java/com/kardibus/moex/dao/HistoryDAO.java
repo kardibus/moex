@@ -2,11 +2,12 @@ package com.kardibus.moex.dao;
 
 import com.kardibus.moex.domain.entity.HistoryEntity;
 import com.kardibus.moex.repository.HistoryRepo;
+import com.kardibus.moex.repository.SecuritiesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -15,11 +16,12 @@ import java.util.Optional;
 public class HistoryDAO {
 
     private HistoryRepo historyRepo;
-    SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd");
+    private SecuritiesRepo securitiesRepo;
 
     @Autowired
-    public HistoryDAO(HistoryRepo historyRepo) {
+    public HistoryDAO(HistoryRepo historyRepo,SecuritiesRepo securitiesRepo) {
         this.historyRepo = historyRepo;
+        this.securitiesRepo = securitiesRepo;
     }
 
     public Optional<HistoryEntity> getOneHistory(Long id) {
@@ -32,12 +34,13 @@ public class HistoryDAO {
 
     public void deleteHistory(Long id) {
         historyRepo.deleteById(id);
+
     }
 
     public List<HistoryEntity> createHistory(Map<String, String> historyEntity) throws ParseException {
         HistoryEntity history = new HistoryEntity();
 
-        history.setTRADEDATE(formatForDateNow.parse(historyEntity.get("tradedate")));
+        history.setTRADEDATE(Date.valueOf(historyEntity.get("tradedate")));
         history.setLOW(historyEntity.get("low"));
         history.setLEGALCLOSEPRICE(historyEntity.get("legalcloseprice"));
         history.setHIGH(historyEntity.get("high"));
@@ -46,7 +49,7 @@ public class HistoryDAO {
         history.setBOARDID(historyEntity.get("boardid"));
         history.setOPEN(historyEntity.get("open"));
         history.setVOLUME(historyEntity.get("volume"));
-        //  history.setSECID(historyEntity.get("secid"));
+        history.setSecid(securitiesRepo.findBySecid(historyEntity.get("secid")));
         history.setNUMTRADES(historyEntity.get("numtrades"));
         history.setSHORTNAME(historyEntity.get("shortname"));
         history.setWAPRICE(historyEntity.get("waprice"));
@@ -62,7 +65,7 @@ public class HistoryDAO {
     }
 
     public List<HistoryEntity> updateHistory(HistoryEntity id, Map<String, String> historyEntity) throws ParseException {
-        id.setTRADEDATE(formatForDateNow.parse(historyEntity.get("tradedate")));
+        id.setTRADEDATE(Date.valueOf(historyEntity.get("tradedate")));
         id.setLOW(historyEntity.get("low"));
         id.setLEGALCLOSEPRICE(historyEntity.get("legalcloseprice"));
         id.setHIGH(historyEntity.get("high"));
@@ -71,13 +74,13 @@ public class HistoryDAO {
         id.setBOARDID(historyEntity.get("boardid"));
         id.setOPEN(historyEntity.get("open"));
         id.setVOLUME(historyEntity.get("volume"));
-        //   id.setSECID(historyEntity.get("secid"));
+        id.setSecid(securitiesRepo.findBySecid(historyEntity.get("secid")));
         id.setNUMTRADES(historyEntity.get("numtrades"));
         id.setSHORTNAME(historyEntity.get("shortname"));
         id.setWAPRICE(historyEntity.get("waprice"));
         id.setMARKETPRICE2(historyEntity.get("marketprice2"));
         id.setWAVAL(historyEntity.get("waval"));
-        id.setMP2VALTRD(historyEntity.get("mp2VALTRD"));
+        id.setMP2VALTRD(historyEntity.get("mp2VALTRDб"));
         id.setMARKETPRICE3(historyEntity.get("marketprice3"));
         id.setADMITTEDQUOTE(historyEntity.get("admittedquote"));
         id.setADMITTEDVALUE(historyEntity.get("admittedvalue"));

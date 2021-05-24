@@ -16,6 +16,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,10 +61,9 @@ public class ParserHistoryXML extends Thread {
 
                 if (securitiesRepo.findBySecid(list.getSECID()) != null) {
                     HistoryEntity historyEntity = new HistoryEntity();
-                    SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd");
 
                     historyEntity.setBOARDID(list.getBOARDID());
-                    historyEntity.setTRADEDATE(formatForDateNow.parse(list.getTRADEDATE()));
+                    historyEntity.setTRADEDATE(Date.valueOf(list.getTRADEDATE()));
                     historyEntity.setSHORTNAME(list.getSHORTNAME());
 
                     historyEntity.setSecid(securitiesRepo.findBySecid(list.getSECID()));

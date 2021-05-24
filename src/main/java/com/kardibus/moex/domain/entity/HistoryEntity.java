@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+
 
 @Data
 @NoArgsConstructor
@@ -56,6 +57,6 @@ public class HistoryEntity {
     private String WAVAL;
 
     @ManyToOne
-    @JoinColumn(name = "SECID",referencedColumnName = "secid")
+    @JoinColumn(name = "SECID", referencedColumnName = "secid")
     private SecuritiesEntity secid;
 }

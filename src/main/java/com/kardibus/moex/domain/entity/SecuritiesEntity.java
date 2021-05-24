@@ -2,6 +2,7 @@ package com.kardibus.moex.domain.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -47,6 +48,6 @@ public class SecuritiesEntity implements Serializable {
 
     private String marketprice_boardid;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "secid",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "secid",fetch = FetchType.LAZY)
     private Set<HistoryEntity> SECID;
 }

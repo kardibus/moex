@@ -5,6 +5,13 @@
     <title>Title</title>
 </head>
 <body>
+<form method="post" action="/common/">
+    <p><b>Search</b></p>
+    <p><input name="itemRow" id="emt" type="radio" onclick="radioText()" value="emitent_title" checked>emitent_title</p>
+    <p><input name="itemRow" id="trd" type="radio" onclick="radioDate()" value="tradedate">tradedate</p>
+    <p><input name="filter" id="filter" type="text" > filter</p>
+    <p><input type="submit" value="Select"></p>
+</form>
 <table  border="1" width="100%" cellpadding="5">
     <thead>
     <tr>
@@ -34,4 +41,5 @@
     </tbody>
 </table>
 </body>
+<script src="/js/secHisCom.js"></script>
 </html>
