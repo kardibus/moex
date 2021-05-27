@@ -1,4 +1,4 @@
-package com.kardibus.moex.dao;
+package com.kardibus.moex.dto;
 
 import com.kardibus.moex.domain.data.CommonData;
 import com.kardibus.moex.repository.CommonHisSecRepo;

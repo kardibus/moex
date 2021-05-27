@@ -1,4 +1,4 @@
-package com.kardibus.moex.dao;
+package com.kardibus.moex.dto;
 
 import com.kardibus.moex.domain.entity.HistoryEntity;
 import com.kardibus.moex.repository.HistoryRepo;
@@ -87,5 +87,9 @@ public class HistoryDAO {
         id.setMARKETPRICE3TRADESVALUE(historyEntity.get("marketprice3TRADESVALUE"));
         historyRepo.save(id);
         return getAllHistory();
+    }
+
+    public HistoryEntity getOneTradeDate(String s){
+        return historyRepo.findBySecid(s);
     }
 }

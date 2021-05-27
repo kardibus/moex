@@ -1,6 +1,6 @@
 package com.kardibus.moex.controller;
 
-import com.kardibus.moex.dao.HistoryDAO;
+import com.kardibus.moex.dto.HistoryDAO;
 import com.kardibus.moex.domain.entity.HistoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

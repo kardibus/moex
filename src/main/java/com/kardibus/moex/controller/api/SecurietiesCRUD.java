@@ -1,6 +1,6 @@
 package com.kardibus.moex.controller.api;
 
-import com.kardibus.moex.dao.SecuritiesDAO;
+import com.kardibus.moex.dto.SecuritiesDAO;
 import com.kardibus.moex.domain.entity.SecuritiesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

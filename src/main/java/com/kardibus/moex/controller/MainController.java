@@ -1,6 +1,7 @@
 package com.kardibus.moex.controller;
 
-import com.kardibus.moex.service.workFile.FileReader;
+import com.kardibus.moex.service.workFile.ParserXML;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,10 +19,11 @@ public class MainController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    private FileReader fileReader;
+    private ParserXML parserXML;
 
-    public MainController(FileReader fileReader){
-        this.fileReader =fileReader;
+    @Autowired
+    public MainController(ParserXML parserXML){
+        this.parserXML =parserXML;
     }
 
     @GetMapping("/")
@@ -29,7 +32,7 @@ public class MainController {
     }
 
     @PostMapping("/file")
-    public String fileParser(@RequestParam(value = "file") MultipartFile file) throws IOException {
+    public String fileParser(@RequestParam(value = "file") MultipartFile file) throws IOException, JAXBException {
 
 
         if (file != null && !file.getOriginalFilename().isEmpty()) {
@@ -39,7 +42,7 @@ public class MainController {
             }
             file.transferTo(new File(uploadPath));
         }
-        fileReader.start();
+        parserXML.run();
 
         return index();
     }

@@ -1,6 +1,6 @@
 package com.kardibus.moex.controller;
 
-import com.kardibus.moex.dao.CommonHisSecDAO;
+import com.kardibus.moex.dto.CommonHisSecDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +36,6 @@ public class CommonHisSecConroller {
         }else {
             model.addAttribute("common",commonHisSecDAO.getTradedateFilter(Date.valueOf(filter)));
         }
-        return "common";
+        return "redirect:/";
     }
 }

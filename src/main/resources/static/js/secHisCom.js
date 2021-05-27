@@ -1,7 +1,11 @@
 function radioDate(){
-     document.getElementById("filter").type = "date";
+    var dateInput = document.getElementById("filter");
+    dateInput.type ="date";
+    dateInput.value =  new Date().toISOString().substring(0, 10);
 }
 
 function radioText(){
-    document.getElementById("filter").type = "text";
+  var textInput =  document.getElementById("filter");
+  textInput.type = "text";
+  textInput.value = "";
 }
