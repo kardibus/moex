@@ -2,8 +2,11 @@ package com.kardibus.moex.dto;
 
 import com.kardibus.moex.domain.entity.SecuritiesEntity;
 import com.kardibus.moex.repository.SecuritiesRepo;
+import com.kardibus.moex.service.moex.MoexService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.StringReader;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -12,9 +15,12 @@ import java.util.Optional;
 public class SecuritiesDAO {
 
     private SecuritiesRepo securitiesRepo;
+    private MoexService moexService;
 
-    public SecuritiesDAO(SecuritiesRepo securitiesRepo) {
+    @Autowired
+    public SecuritiesDAO(SecuritiesRepo securitiesRepo,MoexService moexService) {
         this.securitiesRepo = securitiesRepo;
+        this.moexService=moexService;
     }
 
     public Optional<SecuritiesEntity> getOneSecurities(Long id) {
@@ -75,5 +81,9 @@ public class SecuritiesDAO {
         securitiesRepo.save(id);
 
         return getAllSecurities();
+    }
+
+    public StringReader addSecuritiesApi(String secid){
+       return moexService.getSecuritiesApi(secid);
     }
 }

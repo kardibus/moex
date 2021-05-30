@@ -7,6 +7,7 @@ import com.kardibus.moex.domain.objectXML.history.DocumentXML;
 import com.kardibus.moex.domain.objectXML.history.RowXML;
 import com.kardibus.moex.domain.objectXML.securities.DocumentXMLSecurities;
 import com.kardibus.moex.domain.objectXML.securities.RowXMLSecurities;
+import com.kardibus.moex.dto.SecuritiesDAO;
 import com.kardibus.moex.repository.HistoryRepo;
 import com.kardibus.moex.repository.SecuritiesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ import org.springframework.stereotype.Service;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.StringReader;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,33 +32,40 @@ public class ParserXML {
 
     private HistoryRepo historyRepo;
     private SecuritiesRepo securitiesRepo;
+    private SecuritiesDAO securitiesDAO;
 
     public ParserXML() { }
 
     @Autowired
-    public ParserXML(HistoryRepo historyRepo, SecuritiesRepo securitiesRepo) {
+    public ParserXML(HistoryRepo historyRepo, SecuritiesRepo securitiesRepo,SecuritiesDAO securitiesDAO) {
         this.historyRepo = historyRepo;
         this.securitiesRepo = securitiesRepo;
+        this.securitiesDAO=securitiesDAO;
 
     }
 
     public void run() throws JAXBException, FileNotFoundException {
 
-       if (getDataParseValue(DocumentXML.class).getDataXML().get(0).getId().equals("history")){
-           parserHistory(getDataParseValue(DocumentXML.class));
+       if (getDataParseValue(DocumentXML.class,false,"").getDataXML().get(0).getId().equals("history")){
+           parserHistory(getDataParseValue(DocumentXML.class,false,""));
        }else {
-           parserSecurities(getDataParseValue(DocumentXMLSecurities.class));
+           parserSecurities(getDataParseValue(DocumentXMLSecurities.class,false,""));
        }
     }
 
-    public <T> T getDataParseValue(Class<T> t) throws JAXBException, FileNotFoundException {
+    public <T> T getDataParseValue(Class<T> t,Boolean isNetwork,String secid) throws JAXBException, FileNotFoundException {
         JAXBContext context  = JAXBContext.newInstance(t);
         Unmarshaller um = context.createUnmarshaller();
-        T res = (T) um.unmarshal(new java.io.FileReader(uploadPath));
-        return res;
+        if (isNetwork){
+            T res = (T) um.unmarshal(securitiesDAO.addSecuritiesApi(secid));
+            return res;
+        }else {
+            T res = (T) um.unmarshal(new java.io.FileReader(uploadPath));
+            return res;
+        }
     }
 
-    private void parserHistory(DocumentXML res) {
+    private void parserHistory(DocumentXML res) throws JAXBException, FileNotFoundException {
 
         List<HistoryEntity> historyEntityList = new ArrayList<>();
 
@@ -65,35 +75,42 @@ public class ParserXML {
             for (RowXML list : res.getDataXML().get(0).getRowsXML().getRowXMLS()) {
 
                 if (securitiesRepo.findBySecid(list.getSECID()) != null) {
-                    HistoryEntity historyEntity = new HistoryEntity();
-
-                    historyEntity.setBOARDID(list.getBOARDID());
-                    historyEntity.setTRADEDATE(Date.valueOf(list.getTRADEDATE()));
-                    historyEntity.setSHORTNAME(list.getSHORTNAME());
-
-                    historyEntity.setSecid(securitiesRepo.findBySecid(list.getSECID()));
-                    historyEntity.setNUMTRADES(list.getNUMTRADES());
-                    historyEntity.setVALUE(list.getVALUE());
-                    historyEntity.setOPEN(list.getOPEN());
-                    historyEntity.setLOW(list.getLOW());
-                    historyEntity.setHIGH(list.getHIGH());
-                    historyEntity.setLEGALCLOSEPRICE(list.getLEGALCLOSEPRICE());
-                    historyEntity.setWAPRICE(list.getWAPRICE());
-                    historyEntity.setCLOSE(list.getCLOSE());
-                    historyEntity.setVOLUME(list.getVOLUME());
-                    historyEntity.setMARKETPRICE2(list.getMARKETPRICE2());
-                    historyEntity.setMARKETPRICE3(list.getMARKETPRICE3());
-                    historyEntity.setADMITTEDQUOTE(list.getADMITTEDQUOTE());
-                    historyEntity.setMP2VALTRD(list.getMP2VALTRD());
-                    historyEntity.setMARKETPRICE3TRADESVALUE(list.getMARKETPRICE3TRADESVALUE());
-                    historyEntity.setADMITTEDVALUE(list.getADMITTEDVALUE());
-                    historyEntity.setWAVAL(list.getWAVAL());
-
-                    historyEntityList.add(historyEntity);
+                    historyAddBase(historyEntityList, list);
+                }else {
+                    parserSecurities(getDataParseValue(DocumentXMLSecurities.class,true,list.getSECID()));
+                    historyAddBase(historyEntityList, list);
                 }
             }
             historyRepo.saveAll(historyEntityList);
         }
+    }
+
+    private void historyAddBase(List<HistoryEntity> historyEntityList, RowXML list) {
+        HistoryEntity historyEntity = new HistoryEntity();
+
+        historyEntity.setBOARDID(list.getBOARDID());
+        historyEntity.setTRADEDATE(Date.valueOf(list.getTRADEDATE()));
+        historyEntity.setSHORTNAME(list.getSHORTNAME());
+
+        historyEntity.setSecid(securitiesRepo.findBySecid(list.getSECID()));
+        historyEntity.setNUMTRADES(list.getNUMTRADES());
+        historyEntity.setVALUE(list.getVALUE());
+        historyEntity.setOPEN(list.getOPEN());
+        historyEntity.setLOW(list.getLOW());
+        historyEntity.setHIGH(list.getHIGH());
+        historyEntity.setLEGALCLOSEPRICE(list.getLEGALCLOSEPRICE());
+        historyEntity.setWAPRICE(list.getWAPRICE());
+        historyEntity.setCLOSE(list.getCLOSE());
+        historyEntity.setVOLUME(list.getVOLUME());
+        historyEntity.setMARKETPRICE2(list.getMARKETPRICE2());
+        historyEntity.setMARKETPRICE3(list.getMARKETPRICE3());
+        historyEntity.setADMITTEDQUOTE(list.getADMITTEDQUOTE());
+        historyEntity.setMP2VALTRD(list.getMP2VALTRD());
+        historyEntity.setMARKETPRICE3TRADESVALUE(list.getMARKETPRICE3TRADESVALUE());
+        historyEntity.setADMITTEDVALUE(list.getADMITTEDVALUE());
+        historyEntity.setWAVAL(list.getWAVAL());
+
+        historyEntityList.add(historyEntity);
     }
 
     private void parserSecurities(DocumentXMLSecurities res) {

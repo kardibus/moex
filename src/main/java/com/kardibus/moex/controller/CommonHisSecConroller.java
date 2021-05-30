@@ -29,13 +29,13 @@ public class CommonHisSecConroller {
     }
 
     @PostMapping("/")
-    public String getSearchCommonHisSec(@RequestParam("itemRow") String itemRow,@RequestParam("filter") String filter
+    public String getSearchCommonHisSec(@RequestParam("itemRow") String itemRow,@RequestParam(value = "filter",defaultValue = "") String filter
             ,Model model) {
         if (itemRow.equals("emitent_title")){
             model.addAttribute("common",commonHisSecDAO.getEmitent_titleFilter(filter));
         }else {
             model.addAttribute("common",commonHisSecDAO.getTradedateFilter(Date.valueOf(filter)));
         }
-        return "redirect:/";
+        return "common";
     }
 }

@@ -1,18 +1,22 @@
 package com.kardibus.moex.service.moex;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-public class MoexServiceImpl implements MoexService{
+import java.io.StringReader;
 
-    private MoexApi moexApi;
+@Service
+public class MoexServiceImpl implements MoexService {
 
-    @Autowired
-    public MoexServiceImpl(MoexApi moexApi) {
-        this.moexApi = moexApi;
-    }
 
     @Override
-    public <T> T getSecuritiesApi(String secid) {
-        return null;
+    public StringReader getSecuritiesApi(String secid) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_XML);
+
+        return new StringReader(restTemplate.getForObject("http://iss.moex.com/iss/securities.xml?q=" + secid, String.class));
     }
 }

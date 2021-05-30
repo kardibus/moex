@@ -10,5 +10,11 @@
     <p><input type="file" name="file" accept="text/xml">
         <input type="submit" value="Отправить"></p>
 </form>
+
+<div>
+    <a href="/history">history</a>
+    <a href="/securities">securities</a>
+    <a href="/common/">common table</a>
+</div>
 </body>
 </html>

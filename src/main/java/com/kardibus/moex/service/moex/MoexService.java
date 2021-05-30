@@ -1,6 +1,8 @@
 package com.kardibus.moex.service.moex;
 
+import java.io.StringReader;
+
 public interface MoexService {
 
-    <T> T getSecuritiesApi(String secid);
+    StringReader getSecuritiesApi(String secid);
 }
