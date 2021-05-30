@@ -28,9 +28,9 @@ public class SecuritiesEntity implements Serializable {
 
     private String isin;
 
-    private String is_traded;
+    private int is_traded;
 
-    private String emitent_id;
+    private int emitent_id;
 
     private String emitent_title;
 

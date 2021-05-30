@@ -16,8 +16,8 @@ public class CommonData {
     private String name;
     private String emitent_title;
     private Date tradedate;
-    private String open;
-    private String close;
-    private String numtrades;
+    private Double open;
+    private Double close;
+    private Double numtrades;
 
 }

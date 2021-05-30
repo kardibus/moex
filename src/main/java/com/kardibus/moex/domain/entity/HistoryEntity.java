@@ -24,37 +24,37 @@ public class HistoryEntity {
 
     private String SHORTNAME;
 
-    private String NUMTRADES;
+    private Double NUMTRADES;
 
-    private String VALUE;
+    private Double VALUE;
 
-    private String OPEN;
+    private Double OPEN;
 
-    private String LOW;
+    private Double LOW;
 
-    private String HIGH;
+    private Double HIGH;
 
-    private String LEGALCLOSEPRICE;
+    private Double LEGALCLOSEPRICE;
 
-    private String WAPRICE;
+    private Double WAPRICE;
 
-    private String CLOSE;
+    private Double CLOSE;
 
-    private String VOLUME;
+    private Double VOLUME;
 
-    private String MARKETPRICE2;
+    private Double MARKETPRICE2;
 
-    private String MARKETPRICE3;
+    private Double MARKETPRICE3;
 
-    private String ADMITTEDQUOTE;
+    private Double ADMITTEDQUOTE;
 
-    private String MP2VALTRD;
+    private Double MP2VALTRD;
 
-    private String MARKETPRICE3TRADESVALUE;
+    private Double MARKETPRICE3TRADESVALUE;
 
-    private String ADMITTEDVALUE;
+    private Double ADMITTEDVALUE;
 
-    private String WAVAL;
+    private Double WAVAL;
 
     @ManyToOne
     @JoinColumn(name = "SECID", referencedColumnName = "secid")
