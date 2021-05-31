@@ -12,13 +12,13 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
-public class SecuritiesDAO {
+public class SecuritiesDTO {
 
     private SecuritiesRepo securitiesRepo;
     private MoexService moexService;
 
     @Autowired
-    public SecuritiesDAO(SecuritiesRepo securitiesRepo,MoexService moexService) {
+    public SecuritiesDTO(SecuritiesRepo securitiesRepo, MoexService moexService) {
         this.securitiesRepo = securitiesRepo;
         this.moexService=moexService;
     }

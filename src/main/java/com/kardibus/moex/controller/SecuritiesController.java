@@ -1,6 +1,6 @@
 package com.kardibus.moex.controller;
 
-import com.kardibus.moex.dto.SecuritiesDAO;
+import com.kardibus.moex.dto.SecuritiesDTO;
 import com.kardibus.moex.domain.entity.SecuritiesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,22 +14,22 @@ import java.util.Map;
 @RequestMapping("securities")
 public class SecuritiesController {
 
-    private SecuritiesDAO securitiesDAO;
+    private SecuritiesDTO securitiesDTO;
 
     @Autowired
-    public SecuritiesController(SecuritiesDAO securitiesDAO) {
-        this.securitiesDAO = securitiesDAO;
+    public SecuritiesController(SecuritiesDTO securitiesDTO) {
+        this.securitiesDTO = securitiesDTO;
     }
 
     @GetMapping
     public String getAllSecurities(Model model){
-        model.addAttribute("securities",securitiesDAO.getAllSecurities());
+        model.addAttribute("securities", securitiesDTO.getAllSecurities());
         return "securities";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteSecurities(@PathVariable("id") String id,Model model) {
-        securitiesDAO.deleteSecurities(id);
+        securitiesDTO.deleteSecurities(id);
         return "redirect:/securities";
     }
 
@@ -58,7 +58,7 @@ public class SecuritiesController {
         map.put("primary_boardid",primary_boardid);
         map.put("marketprice_boardid",marketprice_boardid);
 
-        securitiesDAO.updateSecurities(id,map);
+        securitiesDTO.updateSecurities(id,map);
         return "redirect:/securities";
     }
 
@@ -88,7 +88,7 @@ public class SecuritiesController {
         map.put("primary_boardid",primary_boardid);
         map.put("marketprice_boardid",marketprice_boardid);
 
-        securitiesDAO.createSecurities(map);
+        securitiesDTO.createSecurities(map);
         return "redirect:/securities";
     }
 }

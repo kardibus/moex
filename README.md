@@ -1,7 +1,25 @@
-# Сервис для работы с Московской биржей
+# Moex Client
 
-## Пример работы с Api
+## Made on
+* Spring Boot
+* Hibernate
+* Lombok
+* Jaxb
+* PostgresQl
+* Freemarker
 
+## Link
+
+>   Upload file Histroy.xml and Securitties.xml
+* localhost:8080/
+> Table history
+* localhost:8080/history
+> Table securities
+* localhost:8080/securities
+> Table common history and securities
+* localhost:8080/common
+## Getting started with Api
+ 
 > ### GET ALL
  
     let response = await fetch('http://localhost:8888/api/history/', { 
@@ -109,5 +127,3 @@
 
     let result = await response.json();
     console.log(result);
-
-## Описание Приложения

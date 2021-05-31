@@ -1,6 +1,6 @@
 package com.kardibus.moex.controller;
 
-import com.kardibus.moex.dto.CommonHisSecDAO;
+import com.kardibus.moex.dto.CommonHisSecDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,16 +15,16 @@ import java.sql.Date;
 @RequestMapping("/common")
 public class CommonHisSecConroller {
 
-    private CommonHisSecDAO commonHisSecDAO;
+    private CommonHisSecDTO commonHisSecDTO;
 
     @Autowired
-    public CommonHisSecConroller(CommonHisSecDAO commonHisSecDAO) {
-        this.commonHisSecDAO = commonHisSecDAO;
+    public CommonHisSecConroller(CommonHisSecDTO commonHisSecDTO) {
+        this.commonHisSecDTO = commonHisSecDTO;
     }
 
     @GetMapping("/")
     public String getCommonHisSec(Model model) {
-        model.addAttribute("common",commonHisSecDAO.getAllCommon());
+        model.addAttribute("common", commonHisSecDTO.getAllCommon());
         return "common";
     }
 
@@ -32,9 +32,9 @@ public class CommonHisSecConroller {
     public String getSearchCommonHisSec(@RequestParam("itemRow") String itemRow,@RequestParam(value = "filter",defaultValue = "") String filter
             ,Model model) {
         if (itemRow.equals("emitent_title")){
-            model.addAttribute("common",commonHisSecDAO.getEmitent_titleFilter(filter));
+            model.addAttribute("common", commonHisSecDTO.getEmitent_titleFilter(filter));
         }else {
-            model.addAttribute("common",commonHisSecDAO.getTradedateFilter(Date.valueOf(filter)));
+            model.addAttribute("common", commonHisSecDTO.getTradedateFilter(Date.valueOf(filter)));
         }
         return "common";
     }

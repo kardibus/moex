@@ -9,12 +9,12 @@ import java.sql.Date;
 import java.util.List;
 
 @Component
-public class CommonHisSecDAO {
+public class CommonHisSecDTO {
 
     private CommonHisSecRepo commonHisSecRepo;
 
     @Autowired
-    public CommonHisSecDAO(CommonHisSecRepo commonHisSecRepo) {
+    public CommonHisSecDTO(CommonHisSecRepo commonHisSecRepo) {
         this.commonHisSecRepo = commonHisSecRepo;
     }
 

@@ -1,6 +1,6 @@
 package com.kardibus.moex.controller;
 
-import com.kardibus.moex.dto.HistoryDAO;
+import com.kardibus.moex.dto.HistoryDTO;
 import com.kardibus.moex.domain.entity.HistoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,22 +15,22 @@ import java.util.Map;
 @RequestMapping("history")
 public class HistoryController {
 
-    private HistoryDAO historyDAO;
+    private HistoryDTO historyDTO;
 
     @Autowired
-    public HistoryController(HistoryDAO historyDAO) {
-        this.historyDAO = historyDAO;
+    public HistoryController(HistoryDTO historyDTO) {
+        this.historyDTO = historyDTO;
     }
 
     @GetMapping
     public String getAllHistory(Model model){
-        model.addAttribute("history",historyDAO.getAllHistory());
+        model.addAttribute("history", historyDTO.getAllHistory());
         return "history";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteHistory(@PathVariable("id") Long id) {
-        historyDAO.deleteHistory(id);
+        historyDTO.deleteHistory(id);
         return "redirect:/history";
     }
 
@@ -69,7 +69,7 @@ public class HistoryController {
         map.put("admittedvalue",admittedvalue);
         map.put("waval",waval);
 
-        historyDAO.updateHistory(id,map);
+        historyDTO.updateHistory(id,map);
         return "redirect:/history";
     }
 
@@ -108,7 +108,7 @@ public class HistoryController {
         map.put("admittedvalue",admittedvalue);
         map.put("waval",waval);
 
-        historyDAO.createHistory(map);
+        historyDTO.createHistory(map);
         return "redirect:/history";
     }
 }

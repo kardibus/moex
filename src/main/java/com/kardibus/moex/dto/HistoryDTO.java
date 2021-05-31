@@ -13,13 +13,13 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
-public class HistoryDAO {
+public class HistoryDTO {
 
     private HistoryRepo historyRepo;
     private SecuritiesRepo securitiesRepo;
 
     @Autowired
-    public HistoryDAO(HistoryRepo historyRepo,SecuritiesRepo securitiesRepo) {
+    public HistoryDTO(HistoryRepo historyRepo, SecuritiesRepo securitiesRepo) {
         this.historyRepo = historyRepo;
         this.securitiesRepo = securitiesRepo;
     }

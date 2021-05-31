@@ -7,7 +7,7 @@ import com.kardibus.moex.domain.objectXML.history.DocumentXML;
 import com.kardibus.moex.domain.objectXML.history.RowXML;
 import com.kardibus.moex.domain.objectXML.securities.DocumentXMLSecurities;
 import com.kardibus.moex.domain.objectXML.securities.RowXMLSecurities;
-import com.kardibus.moex.dto.SecuritiesDAO;
+import com.kardibus.moex.dto.SecuritiesDTO;
 import com.kardibus.moex.repository.HistoryRepo;
 import com.kardibus.moex.repository.SecuritiesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +30,16 @@ public class ParserXML {
 
     private HistoryRepo historyRepo;
     private SecuritiesRepo securitiesRepo;
-    private SecuritiesDAO securitiesDAO;
+    private SecuritiesDTO securitiesDTO;
 
     public ParserXML() {
     }
 
     @Autowired
-    public ParserXML(HistoryRepo historyRepo, SecuritiesRepo securitiesRepo, SecuritiesDAO securitiesDAO) {
+    public ParserXML(HistoryRepo historyRepo, SecuritiesRepo securitiesRepo, SecuritiesDTO securitiesDTO) {
         this.historyRepo = historyRepo;
         this.securitiesRepo = securitiesRepo;
-        this.securitiesDAO = securitiesDAO;
+        this.securitiesDTO = securitiesDTO;
 
     }
 
@@ -56,7 +56,7 @@ public class ParserXML {
         JAXBContext context = JAXBContext.newInstance(t);
         Unmarshaller um = context.createUnmarshaller();
         if (isNetwork) {
-            T res = (T) um.unmarshal(securitiesDAO.addSecuritiesApi(secid));
+            T res = (T) um.unmarshal(securitiesDTO.addSecuritiesApi(secid));
             return res;
         } else {
             T res = (T) um.unmarshal(new java.io.FileReader(uploadPath));
